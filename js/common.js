@@ -235,7 +235,11 @@
     var cls = grade >= 4 ? 'good' : (grade === 3 ? 'mid' : 'low');
     var text = App.shareText(App.currentMode, grade, correct, total, label);
     var shareBtn = App.el('button', { type: 'button', class: 'btn share-btn', text: '↗ Поделиться' });
-    shareBtn.addEventListener('click', function () { shareResult(shareBtn, text); });
+    shareBtn.addEventListener('click', function () {
+      if (App.track) App.track('share', { mode: App.currentMode });
+      shareResult(shareBtn, text);
+    });
+    if (App.track) App.track('result', { mode: App.currentMode, grade: grade });
     var box = App.el('div', { class: 'result ' + cls + ' grade-' + grade }, [
       App.el('img', { class: 'result-knight', src: info.img, alt: info.alt }),
       App.el('div', { class: 'result-body' }, [
@@ -270,6 +274,7 @@
     var mode = App.modes[name];
     if (!mode) { App.showMenu(); return; }
     App.currentMode = name;
+    if (App.track) App.track('mode_open', { mode: name });
     var box = document.getElementById('mode');
     document.getElementById('menu').hidden = true;
     box.hidden = false;
