@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>История Средних веков — тренажёр</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>История Средних веков</h1>
+      <p class="subtitle">Тренажёр по учебнику: термины и даты</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="menu" class="menu">
+      <figure class="hero"><img src="images/hero.jpg" alt="Рыцарь с книгой на фоне средневековых земель" width="1280" height="853"></figure>
+      <div class="menu-cards">
+        <button type="button" class="menu-card" data-mode="match">
+          <span class="menu-title">Соедини термины с определениями</span>
+          <span class="menu-desc">10 терминов: расставь определения напротив нужных понятий.</span>
+        </button>
+        <button type="button" class="menu-card" data-mode="terms">
+          <span class="menu-title">Выбери определение</span>
+          <span class="menu-desc">Дан термин — найди верное определение среди пяти.</span>
+        </button>
+        <button type="button" class="menu-card" data-mode="order">
+          <span class="menu-title">Расставь события по порядку</span>
+          <span class="menu-desc">10 событий без дат: выстрой их в хронологическом порядке.</span>
+        </button>
+        <button type="button" class="menu-card" data-mode="dates">
+          <span class="menu-title">Что произошло в этот год?</span>
+          <span class="menu-desc">Дана дата — выбери событие, которое тогда произошло.</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="mode" class="mode" hidden></section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/mode-match.js"></script>
+  <script src="js/mode-term-quiz.js"></script>
+  <script src="js/mode-order.js"></script>
+  <script src="js/mode-date-quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
