@@ -438,14 +438,22 @@ html.cookie-blocked body { overflow: hidden; }
 .memo-dates, .memo-list { margin: 0; padding-left: 20px; }
 .memo-dates { list-style: none; padding-left: 0; columns: 2; column-gap: 22px; margin-bottom: 8px; }
 .memo-dates li { margin-bottom: 5px; break-inside: avoid; }
-.memo-dates b { color: var(--accent); }
 .memo-list { list-style: none; padding-left: 0; }
 .memo-list li { margin-bottom: 5px; }
 .memo-list li::before { content: "•"; color: var(--accent); font-weight: 700; margin-right: 6px; }
 .memo-note { font-size: .92rem; color: var(--accent); font-weight: 600; }
-.memo-chains { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
-.memo-chain { line-height: 1.45; }
-.memo-chain b { color: var(--accent); }
+.memo-ladders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.memo-ladder { background: #fff; border-radius: 10px; border-top: 5px solid var(--c); padding: 8px 10px 6px; min-width: 0; break-inside: avoid; display: flow-root; }
+.memo-ladder-head { display: block; margin-bottom: 6px; }
+.memo-ladder-head img { float: right; height: 64px; width: 64px; object-fit: contain; display: block; margin: 0 0 4px 8px; }
+.memo-ladder-head span { font-weight: 800; color: var(--c); line-height: 1.15; }
+.memo-ladder-list { list-style: none; margin: 0; padding: 0 0 0 16px; position: relative; }
+.memo-ladder-list li { --gap: 4px; --lh: 1.3; position: relative; font-size: .88rem; line-height: var(--lh); margin-bottom: var(--gap); }
+.memo-ladder-list li::before { content: ""; position: absolute; left: -16px; top: calc(var(--lh) * 1em / 2 - 6px); width: 8px; height: 8px; border-radius: 50%; background: #fff; border: 2px solid var(--c); z-index: 1; }
+/* линия — отрезками от центра кружка до центра следующего; у последнего пункта её нет */
+.memo-ladder-list li::after { content: ""; position: absolute; left: -11px; top: calc(var(--lh) * 1em / 2); width: 2px; height: calc(100% + var(--gap)); background: var(--c); opacity: .6; }
+.memo-ladder-list li:last-child::after { display: none; }
+.memo-ladder-list li b { margin-right: 3px; color: #000; }
 .memo-foot { margin: 0; text-align: center; font-size: .85rem; color: var(--muted); }
 
 /* полоса эпох */
@@ -455,19 +463,24 @@ html.cookie-blocked body { overflow: hidden; }
   .memo-head { gap: 12px; }
   .memo-knight { width: 110px; }
   .memo h1 { font-size: 1.3rem; }
-  .memo-grid, .memo-chains { grid-template-columns: 1fr; }
+  .memo-grid { grid-template-columns: 1fr; }
+  .memo-ladders { grid-template-columns: 1fr 1fr; }
   .memo-dates { columns: 1; }
+}
+
+@media (max-width: 419px) {
+  .memo-ladders { grid-template-columns: 1fr; }
 }
 
 @media print {
   @page { size: A4; margin: 10mm; }
-  body[data-page="pamyatka"] { background: #fff; font-size: 10pt; line-height: 1.28; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body[data-page="pamyatka"] { background: #fff; font-size: 9.8pt; line-height: 1.26; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body[data-page="pamyatka"] .memo-bar,
   body[data-page="pamyatka"] .cookie-banner,
   body[data-page="pamyatka"] .cookie-refused { display: none !important; }
-  body[data-page="pamyatka"] .memo { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; gap: 6px; }
+  body[data-page="pamyatka"] .memo { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; gap: 5px; }
   body[data-page="pamyatka"] .memo-head { gap: 12px; }
-  body[data-page="pamyatka"] .memo-knight { width: 34mm; }
+  body[data-page="pamyatka"] .memo-knight { width: 33mm; }
   body[data-page="pamyatka"] .memo h1 { font-size: 20pt; }
   body[data-page="pamyatka"] .memo-sub { font-size: 10.5pt; }
   body[data-page="pamyatka"] .memo-grid { gap: 8px; }
@@ -476,8 +489,12 @@ html.cookie-blocked body { overflow: hidden; }
   body[data-page="pamyatka"] .memo-sec p { margin-bottom: 3px; }
   body[data-page="pamyatka"] .memo-dates li, body[data-page="pamyatka"] .memo-list li { margin-bottom: 2px; }
   body[data-page="pamyatka"] .memo-note { font-size: 9.5pt; }
-  body[data-page="pamyatka"] .memo-chains { gap: 2px 18px; }
-  body[data-page="pamyatka"] .memo-chain { font-size: 9.6pt; line-height: 1.26; }
+  body[data-page="pamyatka"] .memo-ladders { gap: 5px; }
+  body[data-page="pamyatka"] .memo-ladder { padding: 4px 7px 3px; border-top-width: 4px; }
+  body[data-page="pamyatka"] .memo-ladder-head { margin-bottom: 2px; }
+  body[data-page="pamyatka"] .memo-ladder-head img { height: 16mm; width: 16mm; margin: 0 0 1mm 2mm; }
+  body[data-page="pamyatka"] .memo-ladder-head span { font-size: 10pt; }
+  body[data-page="pamyatka"] .memo-ladder-list li { --gap: 2px; --lh: 1.2; font-size: 9.2pt; }
   body[data-page="pamyatka"] .memo-dates { margin-bottom: 4px; }
   body[data-page="pamyatka"] .memo-foot { font-size: 9pt; }
 }
