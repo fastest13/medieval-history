@@ -248,7 +248,10 @@
           shareBtn
         ]),
         App.el('div', { class: 'result-score', text: (label || 'Верно') + ' ' + correct + ' из ' + total }),
-        App.el('div', { class: 'result-phrase', text: info.phrase })
+        App.el('div', { class: 'result-phrase', text: info.phrase }),
+        (App.currentMode === 'order' || App.currentMode === 'dates')
+          ? App.el('a', { class: 'result-memo-link', href: 'pamyatka.html', text: '📜 Памятка: как быстро выучить даты' })
+          : null
       ])
     ]);
     container.appendChild(box);

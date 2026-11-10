@@ -72,7 +72,8 @@
 
   // ---------- Блокировка сайта при отказе ----------
   function isPrivacyPage() {
-    return !!(document.body && document.body.getAttribute('data-page') === 'privacy');
+    var page = document.body && document.body.getAttribute('data-page');
+    return page === 'privacy' || page === 'pamyatka';
   }
 
   function blockSite() {
